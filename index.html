@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>demo</title>
+    <script src="./build/react.js"></script>
+    <script src="./build/react-dom.js"></script>
+    <script src="./build/browser.min.js"></script>
+    <style type="text/css">
+
+    </style>
+</head>
+<body class="demo">
+<div id="container"></div>
+<script type="text/babel">
+
+
+   var Options =  React.createClass({
+
+       handleClick: function() {
+           this.props.toggleTextClass();
+       },
+
+        render:function () {
+
+            return <div>
+                <button >预览</button>
+                <br/>
+                <input type="radio" name="option"/>文本框
+                <br />
+                <input type="radio" name="option"/>日期
+                <br/>
+                <button onClick={this.handleClick()}>添加</button>
+            </div>
+        },
+
+    });
+
+   var Left = React.createClass({
+       render:function () {
+           return<div className={this.props.display}>
+               <input type="text"/>
+           </div>
+       }
+   });
+
+
+
+   var App = React.createClass({
+
+       getInitialState: function () {
+           return {
+               type: false
+           }
+       },
+
+       toggleTextClass: function () {
+           this.setState({
+               display: this.state.display = 'block'
+           })
+       },
+       render: function () {
+           return (
+                   <div className="container">
+                       <Left leftClass={this.state.display}/>
+                       <Options toggleTextClass={this.toggleTextClass}/>
+                   </div>
+           )
+       }
+   });
+
+   ReactDOM.render(
+            <App />,
+            document.getElementById('container')
+    );
+
+</script>
+</body>
+</html>
